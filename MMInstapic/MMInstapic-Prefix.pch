@@ -1,0 +1,34 @@
+//
+//  MMInstapic-Prefix.pch
+//  MMInstapic
+//
+//  Created by Sherrie Jones on 4/23/15.
+//  Copyright (c) 2015 Sherrie Jones. All rights reserved.
+//
+
+#ifdef __OBJC__
+@import UIKit;
+@import Parse;
+#import "MMInstapic.h"
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
