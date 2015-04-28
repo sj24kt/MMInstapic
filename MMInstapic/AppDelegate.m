@@ -27,7 +27,7 @@
     [Parse setApplicationId:MM_PARSE_APPLICATION_ID
                   clientKey:MM_PARSE_CLIENT_KEY];
 
-    [PFUser enableRevocableSessionInBackground];
+    //[PFUser enableRevocableSessionInBackground];
 
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

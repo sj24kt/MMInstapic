@@ -12,7 +12,6 @@
 @interface User : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) PFFile *profileImage;
 @property (nonatomic, strong) PFUser *user;

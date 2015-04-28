@@ -42,7 +42,7 @@
 - (void)getProfile {
     PFUser *current = [PFUser currentUser];
     if (current) {
-        self.navigationItem.title = current[@"name"];
+        self.navigationItem.title = current[@"userName"];
         PFFile *imageData = [current objectForKey:@"profileImage"];
         [imageData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if (error) {

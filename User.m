@@ -15,7 +15,6 @@
 @dynamic posts;
 @dynamic email;
 @dynamic profileImage;
-@dynamic name;
 
 + (void)load {
     [self registerSubclass];

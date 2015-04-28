@@ -27,6 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self checkUser];
+
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
     self.photos = [NSMutableArray new];
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor colorWithRed:0.01 green:0.28 blue:0.48 alpha:1.00];
@@ -51,7 +56,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     PhotoDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainCell"];
-    Photo *photo = self.photos[indexPath.row];
+    //Photo *photo = self.photos[indexPath.row];
+    Photo *photo = [self.photos objectAtIndex:[indexPath.description integerValue]];
     cell.commentButton.tag = indexPath.row;
     cell.likeButton.tag = indexPath.row;
     PFFile *file = [photo objectForKey:@"imageFile"];
@@ -111,9 +117,7 @@
 
 - (void)checkUser {
     PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-
-    } else {
+    if (!currentUser) {
         [self performSegueWithIdentifier:@"showLoginSegue" sender:self];
     }
 }
@@ -123,9 +127,9 @@
     if ([segue.identifier isEqualToString:@"showLoginSegue"]) {
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     } else if ([segue.identifier isEqualToString:@"showCommentsSegue"]){
-        UIButton *selected = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         CommentViewController *cvc = segue.destinationViewController;
-        cvc.photo = self.photos[selected.tag];
+        cvc.photo = [self.photos objectAtIndex:[indexPath.description integerValue]];
         [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     }
 }

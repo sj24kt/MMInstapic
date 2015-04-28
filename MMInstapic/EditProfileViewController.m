@@ -26,6 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.isEditSelected = NO;
     self.emailTextField.enabled = self.isEditSelected;
     self.usernameTextField.enabled = self.isEditSelected;
@@ -68,7 +71,7 @@
         self.user[@"username"] = self.usernameTextField.text;
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!" message:error.localizedDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops!" message:error.localizedDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
             } else {
                 [self loadFields];
@@ -201,26 +204,26 @@
     UIImageOrientation orient = image.imageOrientation;
     switch(orient) {
 
-        case UIImageOrientationUp: //EXIF = 1
+        case UIImageOrientationUp:
             transform = CGAffineTransformIdentity;
             break;
 
-        case UIImageOrientationUpMirrored: //EXIF = 2
+        case UIImageOrientationUpMirrored:
             transform = CGAffineTransformMakeTranslation(imageSize.width, 0.0);
             transform = CGAffineTransformScale(transform, -1.0, 1.0);
             break;
 
-        case UIImageOrientationDown: //EXIF = 3
+        case UIImageOrientationDown:
             transform = CGAffineTransformMakeTranslation(imageSize.width, imageSize.height);
             transform = CGAffineTransformRotate(transform, M_PI);
             break;
 
-        case UIImageOrientationDownMirrored: //EXIF = 4
+        case UIImageOrientationDownMirrored:
             transform = CGAffineTransformMakeTranslation(0.0, imageSize.height);
             transform = CGAffineTransformScale(transform, 1.0, -1.0);
             break;
 
-        case UIImageOrientationLeftMirrored: //EXIF = 5
+        case UIImageOrientationLeftMirrored:
             boundHeight = bounds.size.height;
             bounds.size.height = bounds.size.width;
             bounds.size.width = boundHeight;
@@ -229,7 +232,7 @@
             transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
             break;
 
-        case UIImageOrientationLeft: //EXIF = 6
+        case UIImageOrientationLeft:
             boundHeight = bounds.size.height;
             bounds.size.height = bounds.size.width;
             bounds.size.width = boundHeight;
@@ -237,7 +240,7 @@
             transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);
             break;
 
-        case UIImageOrientationRightMirrored: //EXIF = 7
+        case UIImageOrientationRightMirrored:
             boundHeight = bounds.size.height;
             bounds.size.height = bounds.size.width;
             bounds.size.width = boundHeight;
@@ -245,7 +248,7 @@
             transform = CGAffineTransformRotate(transform, M_PI / 2.0);
             break;
 
-        case UIImageOrientationRight: //EXIF = 8
+        case UIImageOrientationRight:
             boundHeight = bounds.size.height;
             bounds.size.height = bounds.size.width;
             bounds.size.width = boundHeight;
